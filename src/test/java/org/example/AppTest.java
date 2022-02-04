@@ -1,24 +1,30 @@
 package org.example;
 
-//import com.sun.tools.javac.util.Assert;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import static io.restassured.RestAssured.given;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalTo;
 
 import org.json.JSONObject;
 
+//import org.junit.Test;
+import io.qameta.allure.Description;
+//import sun.jvm.hotspot.HelloWorld;
+
 /**
- * Unit test for simple App.
+ * Unit test using Rest Assured library.
  */
 public class AppTest 
 {
@@ -27,9 +33,17 @@ public class AppTest
     String UserFirstName;
     String UserId;
 
-    @BeforeEach
-    void setUp() {
+    @BeforeAll
+    static void setUp() {
+        RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
+        Logger logger = LoggerFactory.getLogger(AppTest.class);
+        logger.info("Testing class started");
+    }
 
+    @BeforeAll
+    static void beforeAll() {
+    //for logging request and responses in Allure reporting
+        RestAssured.filters(new AllureRestAssured());
     }
 
     /**------------------------------------------------
@@ -44,12 +58,14 @@ public class AppTest
         UserId = "id=1";
         String requestPath = BaseUrl + "?" + UserId;
 
-        String firstName = given().
-                when().
-                request("GET", requestPath).
-                prettyPeek().
-                then().
-                statusCode(200).extract().response().jsonPath().get("data.first_name");
+        String firstName = given()
+                .log()
+                .all()
+                .when()
+                .request("GET", requestPath)
+                .prettyPeek()
+                .then()
+                .statusCode(200).extract().response().jsonPath().get("data.first_name");
 
         System.out.println ("User found with first name: " + firstName);
     }
@@ -65,12 +81,16 @@ public class AppTest
         String requestPath = BaseUrl + "?" + UserId;
 
         String firstName = given()
+                .log()
+                .all()
                 .when()
                 .get(requestPath)
                 .then().assertThat().body("data.first_name", equalTo("George"))
                   .statusCode(200).extract().response().jsonPath().get("data.first_name");
 
         String lastName = given()
+                .log()
+                .all()
                 .when()
                 .get(requestPath)
                 .then().assertThat().body("data.last_name", equalTo("Bluth"))
@@ -117,6 +137,8 @@ public class AppTest
 
         Response response = given()
                 .body(requestBody.toString())
+                .log()
+                .all()
                 .when()
                 .post(requestPath)
                 .then()

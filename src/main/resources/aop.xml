@@ -1,0 +1,9 @@
+<aspectj>
+    <weaver options="-Xset:weaveJavaxPackages=true">        
+        <include within="my.app.*"/>
+        <include within="javax.persistence.*"/>
+    </weaver>
+    <aspects>
+        <aspect name="my.app.MyAspect" />
+    </aspects>
+</aspectj>

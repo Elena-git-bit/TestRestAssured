@@ -1,0 +1,13 @@
+04.02.2022 12:31:47.490 [main] ERROR  i.q.a.AllureLifecycle - Could not add attachment: no test is running
+04.02.2022 12:31:49.464 [main] ERROR  i.q.a.AllureLifecycle - Could not add attachment: no test is running
+04.02.2022 12:35:28.815 [main] INFO   org.example.AppTest - Testing class started
+04.02.2022 12:35:32.096 [main] ERROR  i.q.a.AllureLifecycle - Could not add attachment: no test is running
+04.02.2022 12:35:34.315 [main] ERROR  i.q.a.AllureLifecycle - Could not add attachment: no test is running
+04.02.2022 12:37:55.021 [main] INFO   org.example.AppTest - Testing class started
+04.02.2022 12:37:56.978 [main] ERROR  i.q.a.AllureLifecycle - Could not add attachment: no test is running
+04.02.2022 12:37:58.887 [main] ERROR  i.q.a.AllureLifecycle - Could not add attachment: no test is running
+04.02.2022 12:38:00.477 [main] ERROR  i.q.a.AllureLifecycle - Could not add attachment: no test is running
+04.02.2022 12:38:00.726 [main] ERROR  i.q.a.AllureLifecycle - Could not add attachment: no test is running
+04.02.2022 12:39:25.640 [main] INFO   org.example.AppTest - Testing class started
+04.02.2022 12:39:28.049 [main] ERROR  i.q.a.AllureLifecycle - Could not add attachment: no test is running
+04.02.2022 12:39:30.486 [main] ERROR  i.q.a.AllureLifecycle - Could not add attachment: no test is running
